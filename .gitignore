@@ -1,1 +1,5 @@
 node_modules
+public/images
+public/pages
+public/database.json
+public/tmp
