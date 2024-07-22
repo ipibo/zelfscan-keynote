@@ -33,14 +33,6 @@ wss.on("connection", (ws) => {
 const port = 3000
 
 app.listen(port, () => {
-  console.log(`Server started on http://localhost:${port}`)
+  console.log(`Server star  ted on http://localhost:${port}`)
 })
-app.get("/", function (req, res) {
-  res.sendFile(path.join(__dirname, "/index.html"))
-})
-app.get("/show", function (req, res) {
-  res.sendFile(path.join(__dirname, "/show.html"))
-})
-app.get("/database", function (req, res) {
-  res.sendFile(path.join(__dirname, "/database.json"))
-})
+app.use(express.static(path.join(__dirname, "public")))

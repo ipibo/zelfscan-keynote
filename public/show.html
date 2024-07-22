@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      // console.log("hoi")
+
+      // let db = {}
+
+      // function getDatabase() {
+      //   return fetch("./database")
+      //     .then((response) => response.json())
+      //     .then((json) => {
+      //       console.log(json)
+      //       return json
+      //     })
+      // }
+
+      const socket = new WebSocket("ws://192.168.2.163:8080")
+      // Event listener for WebSocket connection open
+      socket.addEventListener("open", () => {
+        console.log("Connected to WebSocket server.")
+      })
+
+      socket.addEventListener("message", (event) => {
+        console.log(event.data)
+        const afbeelding = document.getElementById("afbeelding")
+        if (event.data == "") {
+          afbeelding.innerHTML = ""
+        }
+
+        fetch("./database.json")
+          .then((response) => response.json())
+          .then((json) => {
+            console.log(json)
+
+            if (!Object.getOwnPropertyNames(json).includes(event.data)) {
+              return
+            }
+            console.log("it exists")
+            console.log(json[event.data])
+
+            if (json[event.data].type == "image") {
+              afbeelding.innerHTML = `<img src="${
+                json[event.data].url
+              }" alt="afbeelding" />`
+            } else if (json[event.data].type == "page") {
+              afbeelding.innerHTML = `<iframe src="${
+                json[event.data].url
+              }" frameborder="0"></iframe>`
+            }
+
+            return json
+          })
+      })
+    </script>
+  </head>
+  <body>
+    <div id="afbeelding"></div>
+  </body>
+</html>
