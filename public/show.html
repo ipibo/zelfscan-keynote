@@ -5,19 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script>
-      // console.log("hoi")
-
-      // let db = {}
-
-      // function getDatabase() {
-      //   return fetch("./database")
-      //     .then((response) => response.json())
-      //     .then((json) => {
-      //       console.log(json)
-      //       return json
-      //     })
-      // }
-
       const socket = new WebSocket("ws://192.168.2.163:8080")
       // Event listener for WebSocket connection open
       socket.addEventListener("open", () => {
