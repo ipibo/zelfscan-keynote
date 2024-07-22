@@ -12,24 +12,17 @@
         console.log("Connected to WebSocket server.")
       })
 
-      // Event listener for incoming messages
-      socket.addEventListener("message", (event) => {
-        // const messagesDiv = document.getElementById("messages")
-        // messagesDiv.innerHTML += `<p>${event.data.toString()}</p>`
-      })
-
       // Function to send messages
       function sendMessage(message) {
         socket.send(message)
       }
-
       document.addEventListener("keydown", function (n) {
-        // alert(n.keyCode)
         const textfield = document.getElementById("textField")
 
         if (textfield != "") {
           sendMessage(textfield.value)
         }
+
         textfield.value = ""
       })
     </script>

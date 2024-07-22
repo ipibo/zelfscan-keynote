@@ -29,4 +29,9 @@ daarna kan je het project starten door `npm start` of `node server.js` te runnen
 
 ### vragen?
 
+- welke file moet ik waar openen?
+
+  - op de zelfscanner open je de index.html
+  - op de computer open je de show.html
+
 - geen vragen
