@@ -5,50 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <script>
-      // let barCode = ""
+      const socket = new WebSocket("ws://192.168.2.163:8080")
 
-      // function handleScannedBarcode(scannedBarcode) {
-      //   alert(scannedBarcode)
-      //   document.getElementById("gescandeBarcode").innerText = scannedBarcode
-      // }
+      // Event listener for WebSocket connection open
+      socket.addEventListener("open", () => {
+        console.log("Connected to WebSocket server.")
+      })
 
-      // document.addEventListener("keydown", function (n) {
-      //   alert(n.keyCode)
-      // })
+      // Event listener for incoming messages
+      socket.addEventListener("message", (event) => {
+        // const messagesDiv = document.getElementById("messages")
+        // messagesDiv.innerHTML += `<p>${event.data.toString()}</p>`
+      })
 
-      // document.addEventListener("textInput", function (e) {
-      //   alert(e.data)
-      //   if (e.data.length >= 6) {
-      //     console.log("IR scan textInput", e.data)
+      // Function to send messages
+      function sendMessage(message) {
+        socket.send(message)
+      }
 
-      //     e.preventDefault()
-      //   }
-      // })
+      document.addEventListener("keydown", function (n) {
+        // alert(n.keyCode)
+        const textfield = document.getElementById("textField")
 
-      // let UPC = ""
-      // document.addEventListener("keydown", function (e) {
-      //   const textInput = e.key || String.fromCharCode(e.keyCode)
-      //   const targetName = e.target.localName
-      //   let newUPC = ""
-
-      //   if (textInput && textInput.length === 1 && targetName !== "input") {
-      //     newUPC = UPC + textInput
-
-      //     if (newUPC.length >= 6) {
-      //       console.log("barcode scanned:  ", newUPC)
-      //       alert("barcode scanned:  ", newUPC)
-      //     }
-      //   }
-      // })
+        if (textfield != "") {
+          sendMessage(textfield.value)
+        }
+        textfield.value = ""
+      })
     </script>
     <title>Document</title>
   </head>
   <body>
     hallo dit is een test
-    <input type="text" />
+    <input type="text" id="textField" />
 
     <div id="gescandeBarcode"></div>
   </body>
   <script src="zScan.min.js"></script>
-  <script></script>
+  <script>
+    var input = document.getElementById("textField")
+    input.focus()
+    input.select()
+  </script>
 </html>

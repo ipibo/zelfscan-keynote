@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      // console.log("hoi")
+
+      fetch("./database")
+        .then((response) => response.json())
+        .then((json) => console.log(json))
+
+      const socket = new WebSocket("ws://192.168.2.163:8080")
+      // Event listener for WebSocket connection open
+      socket.addEventListener("open", () => {
+        console.log("Connected to WebSocket server.")
+      })
+
+      socket.addEventListener("message", (event) => {
+        console.log(event.data)
+        const afbeelding = document.getElementById("afbeelding")
+        if (event.data != "") {
+          afbeelding.innerHTML = ""
+        }
+
+        if (event.data == "4019787601948") {
+          console.log("schroeven")
+          const image = document.createElement("img")
+          image.src =
+            "https://cdn.nextchapter-ecommerce.com/Public/Products/xlarge/101457-0281.01.13201-dynaplus-spaanplaatschroef-verzinkt-platkop-torx-voldraad.jpg"
+          afbeelding.appendChild(image)
+        } else if (event.data == "8725000660154") {
+          console.log("bier")
+          const image = document.createElement("img")
+          image.src =
+            "https://www.alcoholvrijshop.nl/media/catalog/product/cache/fd2f998da3b103353dc59ebf37e66336/h/e/hertog-jan-0-0.png"
+          afbeelding.appendChild(image)
+        }
+      })
+    </script>
+  </head>
+  <body>
+    <div id="afbeelding"></div>
+  </body>
+</html>
