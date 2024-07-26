@@ -43,21 +43,39 @@
         input.select()
       })
     </script>
-    <title>Document</title>
+    <title>zelfscanner</title>
   </head>
   <body>
     <input type="text" id="textField" />
     <div id="gescandeBarcode"></div>
+    <div id="notes"></div>
   </body>
   <script src="zScan.min.js"></script>
   <script>
     var input = document.getElementById("textField")
+    let notes = document.getElementById("notes")
     input.focus()
     input.select()
 
     input.oninput = function () {
       sendMessage(input.value)
-      input.value = ""
+
+      fetch("/database.json")
+        .then((response) => response.json())
+        .then((json) => {
+          notes.innerHTML = ""
+          if (json[input.value].note != undefined) {
+            notes.innerHTML = json[input.value].note
+          }
+          if (!Object.getOwnPropertyNames(json).includes(input.value)) {
+            return
+          }
+          let data = json[input.value]
+
+          return json
+        })
+
+      // input.value = ""
     }
   </script>
 </html>

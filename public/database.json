@@ -1,7 +1,8 @@
 {
   "4019787601948":{
     "url":"images/schroeven.jpg",
-    "type":"image"
+    "type":"image",
+    "note":"Dit is een afbeelding van schroeven, scan hierna de barcode van de hertogjan"
   },
   "8725000660154":{
     "url":"pages/hertogjan.html",
@@ -9,6 +10,7 @@
 },
   "9789493148895":{
     "multiple":true,
+    "note":"dit zijn de boeken. deze mag je een paar keer scannen. eerst zie je x, dan y , dan z",
     "0":{
     "url":"videos/arr.mp4",
     "type":"video"

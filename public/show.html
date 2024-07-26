@@ -16,7 +16,6 @@
       let counter = 0
 
       socket.addEventListener("message", (event) => {
-        console.log(event.data)
         const afbeelding = document.getElementById("afbeelding")
         if (event.data == "") {
           afbeelding.innerHTML = ""
