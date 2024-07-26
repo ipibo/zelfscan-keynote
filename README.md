@@ -35,3 +35,17 @@ daarna kan je het project starten door `npm start` of `node server.js` te runnen
   - op de computer open je de show.html
 
 - geen vragen
+
+### todo's
+
+- [ ] Video kunnen toevoegen, naast afbeeldingen en webpagina’s
+- [ ] Keynote: zelfde product een aantal keer kunnen scannen en dan bij elke extra scan een andere afbeelding/pagina/video krijgen
+- [ ] Keynote: steekwoorden en instructies vertonen op de scanner
+- [ ] Speurtocht: kijken of het mogelijk is om toch een soort “volgende” knop te kunnen toevoegen, zodat het echt een soort point en click adventure kan worden waarbij je soms door een een dialoog heen moet klikken
+- [ ] Speurtocht: barcode toevoegen om vroegtijdig te kunnen stoppen, en aan het begin voor verschillende talen
+- [ ] Speurtocht: inbouwen dat je in sommige gevallen naar de volgende pagina/afbeelding/video gaat bij het scannen van een willekeurige code (zodat ik bijv. kan zeggen “scan IETS uit een koelschap om verder te gaan”)
+- [ ] Speurtocht: melding bij het scannen van het verkeerde product (bijv. “Nee, dit bedoel ik niet. Scan nu [huidig product]”)
+- [ ] Speurtocht: optie waarbij, als er na bijv. 5 minuten nog niet het goede product gescand is, de speurtocht toch verder gaat nadat hier eerst een melding over komt
+- [ ] Speurtocht: help-knop, zodat ik een raadsel als omschrijving kan geven voor welk product er gescand moet worden en dan staat onder de help-knop staat wat het is
+- [ ] Speurtocht: voorkomen dat je “vooruit kan springen” in de tijdlijn/flowchart van de speurtocht
+- [ ] Speurtocht: in het verlengde daarvan, soms een pagina hebben waarbij je meerdere opties hebt voor de volgende pagina, kan ook bij de help knop in
