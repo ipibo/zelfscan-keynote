@@ -38,7 +38,7 @@ daarna kan je het project starten door `npm start` of `node server.js` te runnen
 
 ### todo's
 
-- [ ] Video kunnen toevoegen, naast afbeeldingen en webpagina’s
+- [x] Video kunnen toevoegen, naast afbeeldingen en webpagina’s
 - [ ] Keynote: zelfde product een aantal keer kunnen scannen en dan bij elke extra scan een andere afbeelding/pagina/video krijgen
 - [ ] Keynote: steekwoorden en instructies vertonen op de scanner
 - [ ] Speurtocht: kijken of het mogelijk is om toch een soort “volgende” knop te kunnen toevoegen, zodat het echt een soort point en click adventure kan worden waarbij je soms door een een dialoog heen moet klikken
