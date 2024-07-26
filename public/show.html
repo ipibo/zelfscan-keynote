@@ -26,9 +26,6 @@
             if (!Object.getOwnPropertyNames(json).includes(event.data)) {
               return
             }
-            console.log("it exists")
-            console.log(json[event.data])
-
             if (json[event.data].type == "image") {
               afbeelding.innerHTML = `<img src="${
                 json[event.data].url
