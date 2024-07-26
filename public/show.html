@@ -35,6 +35,10 @@
               afbeelding.innerHTML = `<iframe src="${
                 json[event.data].url
               }" frameborder="0"></iframe>`
+            } else if (json[event.data].type == "video") {
+              afbeelding.innerHTML = `<video autoplay loop src="${
+                json[event.data].url
+              }"></video>`
             }
 
             return json
