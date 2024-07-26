@@ -12,6 +12,9 @@
         console.log("Connected to WebSocket server.")
       })
 
+      let lastBarcode = ""
+      let counter = 0
+
       socket.addEventListener("message", (event) => {
         console.log(event.data)
         const afbeelding = document.getElementById("afbeelding")
@@ -22,25 +25,39 @@
         fetch("./database.json")
           .then((response) => response.json())
           .then((json) => {
-            console.log(json)
-
             if (!Object.getOwnPropertyNames(json).includes(event.data)) {
               return
             }
-            if (json[event.data].type == "image") {
-              afbeelding.innerHTML = `<img src="${
-                json[event.data].url
-              }" alt="afbeelding" />`
-            } else if (json[event.data].type == "page") {
-              afbeelding.innerHTML = `<iframe src="${
-                json[event.data].url
-              }" frameborder="0"></iframe>`
-            } else if (json[event.data].type == "video") {
-              afbeelding.innerHTML = `<video autoplay loop src="${
-                json[event.data].url
-              }"></video>`
+            let data = json[event.data]
+
+            if (event.data != lastBarcode) {
+              counter = 0
+            }
+            if (
+              event.data == lastBarcode &&
+              json[event.data].multiple == true
+            ) {
+              counter++
+              if (json[event.data][counter]) {
+                data = json[event.data][counter]
+              } else {
+                counter = 0
+              }
             }
 
+            if (json[event.data].multiple == true) {
+              data = json[event.data][counter]
+            }
+
+            if (data.type == "image") {
+              afbeelding.innerHTML = `<img src="${data.url}" alt="afbeelding" />`
+            } else if (data.type == "page") {
+              afbeelding.innerHTML = `<iframe src="${data.url}" frameborder="0"></iframe>`
+            } else if (data.type == "video") {
+              afbeelding.innerHTML = `<video autoplay loop src="${data.url}"></video>`
+            }
+
+            lastBarcode = event.data
             return json
           })
       })

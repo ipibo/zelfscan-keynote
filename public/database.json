@@ -8,8 +8,15 @@
     "type":"page"
 },
   "9789493148895":{
+    "multiple":true,
+    "0":{
     "url":"videos/arr.mp4",
     "type":"video"
+  },
+    "1":{
+    "url":"pages/arr.html",
+    "type":"page"
+  }
 }
 
 }
