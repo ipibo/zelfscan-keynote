@@ -13,13 +13,13 @@ kopieer de `database example.json` naar `database.json` en vul deze met de juist
 
 let daarbij op dat je de juist bestand soort moet aangeven bij het juiste bestand.
 
-- een iframe noem je `page` en een afbeelding noem je `iamge`
+- een iframe noem je `page` en een afbeelding noem je `image`
 
 Het is belangrijk dat de fildes die je aan de db toevoegd ook daadwerkelijk in de folders staan. anders werkt het niet.
 
 ### starten
 
-belangrijk om eerst even je eigen ip adres te checken. dit moet je vervolgens even aanpassen in de index.html en de show.html
+belangrijk om eerst even je eigen ip adres te checken. dit moet je vervolgens even aanpassen in de index.html en de show.html !!!!!!!!!
 
 - op een mac doe je dit door `ifconfig` te runnen in de terminal. of op een makkelijkere manier door: `option` ingedrukt te houden en op het wifi icoontje te klikken. dan zie je je ip adres staan.
 

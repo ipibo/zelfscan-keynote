@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
       #textField {
-        /* opacity: 0;
+        opacity: 0;
         position: absolute;
-        left: -9999px; */
+        left: -9999px;
       }
 
       body {
@@ -30,18 +30,6 @@
     </style>
 
     <script>
-      // const socket = new WebSocket("ws://192.168.2.163:8080")
-
-      // // Event listener for WebSocket connection open
-      // socket.addEventListener("open", () => {
-      //   console.log("Connected to WebSocket server.")
-      // })
-
-      // // Function to send messages
-      // function sendMessage(message) {
-      //   socket.send(message)
-      // }
-
       document.addEventListener("keydown", function (n) {})
     </script>
     <title>Document</title>
@@ -75,9 +63,6 @@
       afbeelding.innerHTML = ""
 
       console.log(db[input.value])
-      // fetch("./database.json")
-      //   .then((response) => response.json())
-      //   .then((db) => {
       if (!Object.getOwnPropertyNames(db).includes(input.value)) {
         return
       }

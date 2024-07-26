@@ -35,4 +35,5 @@ const port = 3000
 app.listen(port, () => {
   console.log(`Server star  ted on http://localhost:${port}`)
 })
-app.use(express.static(path.join(__dirname, "public")))
+// app.use(express.static(path.join(__dirname, "public")))
+app.use(express.static("public"))
