@@ -3,6 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      #textField {
+        /* display: none; */
+        /* visibility: hidden;
+         */
+        /* width: 0px; */
+        opacity: 0;
+        position: absolute;
+        left: -9999px;
+      }
+
+      body {
+        background: rgb(255, 255, 255);
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 1) 0%,
+          rgba(41, 165, 255, 1) 50%,
+          rgba(41, 165, 255, 1) 67%,
+          rgba(255, 255, 255, 1) 85%
+        );
+        min-height: 100vh;
+      }
+    </style>
 
     <script>
       const socket = new WebSocket("ws://192.168.2.163:8080")
@@ -16,20 +39,11 @@
       function sendMessage(message) {
         socket.send(message)
       }
-      document.addEventListener("keydown", function (n) {
-        const textfield = document.getElementById("textField")
-
-        if (textfield != "") {
-          sendMessage(textfield.value)
-        }
-
-        textfield.value = ""
-      })
+      document.addEventListener("keydown", function (n) {})
     </script>
     <title>Document</title>
   </head>
   <body>
-    hallo dit is een test
     <input type="text" id="textField" />
 
     <div id="gescandeBarcode"></div>
@@ -39,5 +53,11 @@
     var input = document.getElementById("textField")
     input.focus()
     input.select()
+
+    input.oninput = function () {
+      // alert(input.value)
+      sendMessage(input.value)
+      input.value = ""
+    }
   </script>
 </html>
