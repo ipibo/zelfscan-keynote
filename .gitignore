@@ -1,5 +1,17 @@
 node_modules
-# public/images/*
-# public/pages/*
-# public/database.json
-# public/tmp
+public/images/*
+public/pages/*
+public/database.json
+public/tmp
+
+# Ignore all .jpg files
+*.jpg
+
+# Ignore all .jpeg files
+*.jpeg
+
+# Ignore all .webm files
+*.webm
+
+# Ignore all .mp4 files
+*.mp4
