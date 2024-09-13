@@ -10,6 +10,11 @@ const wss = new WebSocket.Server({ port: 8080 })
 // WebSocket event handling
 wss.on("connection", (ws) => {
   console.log("A new client connected.")
+  wss.clients.forEach((client) => {
+    if (client.readyState === WebSocket.OPEN) {
+      client.send(`${counter}`)
+    }
+  })
 
   // Event listener for incoming messages
   ws.on("message", (message) => {
@@ -37,3 +42,21 @@ app.listen(port, () => {
 })
 // app.use(express.static(path.join(__dirname, "public")))
 app.use(express.static("public"))
+
+let counter = 1
+let maxCounter = 1
+
+setInterval(() => {
+  console.log("sending pulse")
+
+  wss.clients.forEach((client) => {
+    if (client.readyState === WebSocket.OPEN) {
+      client.send(`${counter}`)
+    }
+  })
+
+  counter++
+  if (counter > maxCounter) {
+    counter = 1
+  }
+}, 75000)

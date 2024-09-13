@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
       #textField {
-        opacity: 0;
+        /* opacity: 0;
         position: absolute;
-        left: -9999px;
+        left: -9999px;*/
       }
 
       body {
@@ -50,13 +50,13 @@
     <div id="gescandeBarcode"></div>
     <div id="notes"></div>
   </body>
-  <script src="zScan.min.js"></script>
+  <!-- <script src="zScan.min.js"></script> -->
   <script>
     var input = document.getElementById("textField")
     let notes = document.getElementById("notes")
     input.focus()
     input.select()
-
+    alert("input")
     input.oninput = function () {
       sendMessage(input.value)
 
