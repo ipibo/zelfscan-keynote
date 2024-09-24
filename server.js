@@ -12,6 +12,7 @@ wss.on("connection", (ws) => {
   console.log("A new client connected.")
   wss.clients.forEach((client) => {
     if (client.readyState === WebSocket.OPEN) {
+      console.log('sending to other')
       client.send(`${counter}`)
     }
   })
@@ -59,4 +60,4 @@ setInterval(() => {
   if (counter > maxCounter) {
     counter = 1
   }
-}, 75000)
+}, 90000)
