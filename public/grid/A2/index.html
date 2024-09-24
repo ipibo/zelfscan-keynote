@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Video Fullscreen</title>
     <script>
-      const socket = new WebSocket("ws://192.168.2.6:8080")
+      const socket = new WebSocket("ws://192.168.2.140:8080")
 
       let isFirstTimeFullscreen = false // Track if fullscreen has been triggered manually
 
@@ -24,15 +24,15 @@
       socket.addEventListener("message", (event) => {
         const video = document.getElementById("theImage")
         console.log(event.data)
-        const newSrc = `http://192.168.2.6:3000/grid/A2/${event.data}.webm`
+        const newSrc = `http://192.168.2.140:3000/grid/A2/${event.data}.webm`
         // if (video.src !== newSrc) {
-          video.src = newSrc
-          video.play() // Ensure video plays automatically
+        video.src = newSrc
+        video.play() // Ensure video plays automatically
 
-          // If fullscreen was triggered manually before, keep it in fullscreen mode
-          if (isFirstTimeFullscreen) {
-            makeFullscreen()
-          }
+        // If fullscreen was triggered manually before, keep it in fullscreen mode
+        if (isFirstTimeFullscreen) {
+          makeFullscreen()
+        }
         // }
       })
     </script>
