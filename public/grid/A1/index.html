@@ -24,7 +24,7 @@
       socket.addEventListener("message", (event) => {
         const video = document.getElementById("theImage")
         console.log(event.data)
-        const newSrc = `http://192.168.2.163:3000/grid/A1/demonstration-images/${event.data}.webm`
+        const newSrc = `http://192.168.2.6:3000/grid/A1/${event.data}.webm`
         if (video.src !== newSrc) {
           video.src = newSrc
           video.play() // Ensure video plays automatically
