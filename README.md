@@ -38,10 +38,13 @@ daarna kan je het project starten door `npm start` of `node server.js` te runnen
 
 ### todo's
 
+- [ ] speurtocht: moet lokaal kunnen draaien op de zelfscanner (dus zonder internet).
+
 - [x] Video kunnen toevoegen, naast afbeeldingen en webpagina’s
 - [x] Keynote: zelfde product een aantal keer kunnen scannen en dan bij elke extra scan een andere afbeelding/pagina/video krijgen
 - [x] Keynote: steekwoorden en instructies vertonen op de scanner
 - [ ] keynote /speurtocht: toetsenbord niet laten verschijnen bij het scannen van een barcode
+
 - [ ] Speurtocht: kijken of het mogelijk is om toch een soort “volgende” knop te kunnen toevoegen, zodat het echt een soort point en click adventure kan worden waarbij je soms door een een dialoog heen moet klikken
 - [ ] Speurtocht: barcode toevoegen om vroegtijdig te kunnen stoppen, en aan het begin voor verschillende talen
 - [ ] Speurtocht: inbouwen dat je in sommige gevallen naar de volgende pagina/afbeelding/video gaat bij het scannen van een willekeurige code (zodat ik bijv. kan zeggen “scan IETS uit een koelschap om verder te gaan”)
