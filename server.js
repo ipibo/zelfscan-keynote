@@ -60,4 +60,4 @@ setInterval(() => {
   if (counter > maxCounter) {
     counter = 1
   }
-}, 134000)
+}, 135000)
