@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Video Fullscreen</title>
     <script>
-      const socket = new WebSocket("ws://192.168.2.108:8080")
+      let socket = new WebSocket("ws://192.168.2.108:8080")
 
       let isFirstTimeFullscreen = false // Track if fullscreen has been triggered manually
 
@@ -34,6 +34,25 @@
           makeFullscreen()
         }
         // }
+      })
+      socket.addEventListener("close", function () {
+        console.log("WebSocket connection closed")
+        const reconnect = function () {
+          console.log("Attempting to reconnect to WebSocket server")
+          socket = new WebSocket("ws://192.168.2.108:8080")
+          socket.addEventListener("open", function () {
+            console.log("WebSocket connection reestablished")
+            location.reload()
+          })
+          socket.addEventListener("close", function () {
+            console.log("WebSocket connection closed again, retrying...")
+            setTimeout(reconnect, 5000)
+          })
+          socket.addEventListener("error", function (error) {
+            console.error("WebSocket error during reconnection:", error)
+          })
+        }
+        setTimeout(reconnect, 5000)
       })
     </script>
     <style>
