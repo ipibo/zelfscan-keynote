@@ -36,6 +36,26 @@
         }
         // }
       })
+
+      socket.addEventListener("close", function () {
+        console.log("WebSocket connection closed")
+        const reconnect = function () {
+          console.log("Attempting to reconnect to WebSocket server")
+          socket = new WebSocket("ws://192.168.2.108:8080")
+          socket.addEventListener("open", function () {
+            console.log("WebSocket connection reestablished")
+            location.reload()
+          })
+          socket.addEventListener("close", function () {
+            console.log("WebSocket connection closed again, retrying...")
+            setTimeout(reconnect, 5000)
+          })
+          socket.addEventListener("error", function (error) {
+            console.error("WebSocket error during reconnection:", error)
+          })
+        }
+        setTimeout(reconnect, 5000)
+      })
     </script>
     <style>
       /* Ensure video fills the screen */
