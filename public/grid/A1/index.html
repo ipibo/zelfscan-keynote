@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Video Fullscreen</title>
     <script>
-      const socket = new WebSocket("ws://192.168.2.108:8080")
+      let socket = new WebSocket("ws://192.168.2.108:8080")
 
       let isFirstTimeFullscreen = false // Track if fullscreen has been triggered manually
 
