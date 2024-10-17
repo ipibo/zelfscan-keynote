@@ -24,7 +24,8 @@
       socket.addEventListener("message", (event) => {
         const video = document.getElementById("theImage")
         console.log(event.data)
-        const newSrc = `http://192.168.2.108:3000/grid/A1/${event.data}.webm`
+        // const newSrc = `http://192.168.2.108:3000/grid/A1/${event.data}.webm`
+        const newSrc = `http://192.168.2.108:3000/grid/A1/PMC.mp4`
         // alert(video.src)
         // if (video.src !== newSrc) {
         video.src = newSrc
