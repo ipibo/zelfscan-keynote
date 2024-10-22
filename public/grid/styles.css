@@ -1,0 +1,52 @@
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent scrollbars */
+}
+/* Ensure video fills the screen */
+video#theImage {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover; /* Ensure the video covers the screen */
+  background: black;
+  border: none;
+  display: block;
+  top: 0;
+  left: 0;
+  margin: 0px;
+  padding: 0px;
+}
+
+/* Hide default video controls in fullscreen  */
+/*       
+video::-webkit-media-controls {
+  display: none !important;
+}
+video::-moz-media-controls {
+  display: none !important;
+}
+video::-ms-media-controls {
+  display: none !important;
+}
+video::-media-controls {
+  display: none !important;
+} */
+
+/* Style for fullscreen button */
+button {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1000; /* Ensure it stays above the video */
+}
+
+button:hover {
+  background-color: #0056b3;
+}

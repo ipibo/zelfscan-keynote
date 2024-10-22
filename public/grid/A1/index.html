@@ -3,9 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <link rel="stylesheet" href="../styles.css" />
     <title>Video Fullscreen</title>
     <script>
-      let socket = new WebSocket("ws://192.168.2.108:8080")
+      const href = document.location.href
+
+      const wsProtocol = "ws://"
+      const wsHost = href.split("/")[2].split(":")[0] // Extract the host part from the URL
+      const wsPort = "8080"
+      const wsUrl = `${wsProtocol}${wsHost}:${wsPort}`
+
+      let socket = new WebSocket(wsUrl)
 
       let isFirstTimeFullscreen = false // Track if fullscreen has been triggered manually
 
@@ -24,7 +33,7 @@
       socket.addEventListener("message", (event) => {
         const video = document.getElementById("theImage")
         console.log(event.data)
-        const newSrc = `http://192.168.2.108:3000/grid/A1/${event.data}.webm`
+        const newSrc = `${href}${event.data}.webm`
         // const newSrc = `http://192.168.2.108:3000/grid/A1/PMC.mp4`
         // alert(video.src)
         // if (video.src !== newSrc) {
@@ -42,7 +51,7 @@
         console.log("WebSocket connection closed")
         const reconnect = function () {
           console.log("Attempting to reconnect to WebSocket server")
-          socket = new WebSocket("ws://192.168.2.108:8080")
+          socket = new WebSocket(`${wsProtocol}${wsHost}:${wsPort}`)
           socket.addEventListener("open", function () {
             console.log("WebSocket connection reestablished")
             location.reload()
@@ -58,55 +67,11 @@
         setTimeout(reconnect, 5000)
       })
     </script>
-    <style>
-      /* Ensure video fills the screen */
-      video#theImage {
-        width: 100vw;
-        height: 100vh;
-        object-fit: cover; /* Ensure the video covers the screen */
-        background: black;
-        border: none;
-        display: block;
-      }
-
-      /* Hide default video controls in fullscreen  */
-      /*       
-      video::-webkit-media-controls {
-        display: none !important;
-      }
-      video::-moz-media-controls {
-        display: none !important;
-      }
-      video::-ms-media-controls {
-        display: none !important;
-      }
-      video::-media-controls {
-        display: none !important;
-      } */
-
-      /* Style for fullscreen button */
-      button {
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        padding: 10px 20px;
-        font-size: 16px;
-        background-color: #007bff;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        z-index: 1000; /* Ensure it stays above the video */
-      }
-
-      button:hover {
-        background-color: #0056b3;
-      }
-    </style>
+    <style></style>
   </head>
   <body>
     <!-- Button to manually trigger fullscreen the first time -->
-    <button onclick="makeFullscreen()">Enter Fullscreen</button>
+    <!-- <button onclick="makeFullscreen()">Enter Fullscreen</button> -->
     <video id="theImage" autoplay muted loop playsinline></video>
   </body>
 </html>
