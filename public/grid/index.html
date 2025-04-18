@@ -50,14 +50,36 @@
   </style>
   <title>Video Fullscreen</title>
   <script>
-    const href = document.location.href
+    // Register the Service Worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js').then(() => {
+        console.log('Service Worker registered successfully.');
+      }).catch((error) => {
+        console.error('Service Worker registration failed:', error);
+      });
+    }
+
+    const href = document.location.href;
+    const gridPosition = href.split("/").filter(part => part).pop();
+    const videoUrl = `videos/${gridPosition}.webm`;
+
+    // Cache the video for offline use
+    fetch(videoUrl).then(response => {
+      if (response.ok) {
+        caches.open('video-cache').then(cache => {
+          cache.put(videoUrl, response);
+          console.log(`${videoUrl} cached successfully.`);
+        });
+      }
+    }).catch(error => {
+      console.error('Error caching video:', error);
+    });
 
     const wsProtocol = "ws://"
     const wsHost = href.split("/")[2].split(":")[0] // Extract the host part from the URL
     const wsPort = "8080"
     const wsUrl = `${wsProtocol}${wsHost}:${wsPort}`
     const baseURL = `${wsHost}:3000`
-    const gridPosition = href.split("/").filter(part => part).pop();
 
     let socket = new WebSocket(wsUrl)
 
