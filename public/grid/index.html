@@ -61,8 +61,8 @@
 
     const href = document.location.href;
     const gridPosition = href.split("/").filter(part => part).pop();
-    // const videoUrl = `videos/${gridPosition}.mp4`;
-    const videoUrl = `videos/${gridPosition}.webm`;
+    const videoUrl = `videos/${gridPosition}.mp4`;
+    // const videoUrl = `videos/${gridPosition}.webm`;
 
     const wsProtocol = "ws://";
     const wsHost = href.split("/")[2].split(":")[0]; // Extract the host part from the URL
@@ -88,8 +88,8 @@
     // Update the video source and enter fullscreen if it has been triggered manually
     socket.addEventListener("message", (event) => {
       const video = document.getElementById("theImage");
-      // const newSrc = `http://${baseURL}/videos/${gridPosition}.mp4`;
-      const newSrc = `http://${baseURL}/videos/${gridPosition}.webm`;
+      const newSrc = `http://${baseURL}/videos/${gridPosition}.mp4`;
+      // const newSrc = `http://${baseURL}/videos/${gridPosition}.webm`;
 
       video.src = newSrc;
       video.play(); // Ensure video plays automatically
