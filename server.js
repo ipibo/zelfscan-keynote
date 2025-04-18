@@ -35,14 +35,18 @@ wss.on("connection", (ws) => {
   })
 })
 
+// Middleware to serve index.html for /grid/* routes
+app.get("/grid/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "public/grid/", "index.html"))
+})
+
 // Start the server
 const port = 3000
 
 app.listen(port, () => {
-  console.log(`Server star  ted on http://localhost:${port}`)
+  console.log(`Server started on http://localhost:${port}`)
 })
 app.use(express.static(path.join(__dirname, "public")))
-// app.use(express.static("public"))
 
 let counter = 1
 let maxCounter = 1

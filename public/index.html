@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="grid/styles.css" />
     <style>
       #textField {
         /* opacity: 0;
@@ -42,13 +43,39 @@
         input.focus()
         input.select()
       })
+
+      // Get the current URL path
+      const path = window.location.pathname;
+
+      // Define a mapping of paths to video sources
+      const videoMap = {
+        '/grid/A1': 'videos/videoA1.mp4',
+        '/grid/A2': 'videos/videoA2.mp4',
+        // Add more mappings as needed
+      };
+
+      // Get the video source based on the path
+      const videoSrc = videoMap[path] || 'videos/defaultVideo.mp4';
+
+      // Function to set the video source dynamically
+      const setVideoSource = () => {
+        const videoElement = document.getElementById('theImage');
+        if (videoElement) {
+          videoElement.src = videoSrc;
+          videoElement.play();
+        }
+      };
+
+      // Set the video source on page load
+      window.addEventListener('DOMContentLoaded', setVideoSource);
     </script>
-    <title>zelfscanner</title>
+    <title>Dynamic Video Loader</title>
   </head>
-  <body>
+  <body></body>
     <input type="text" id="textField" />
     <div id="gescandeBarcode"></div>
     <div id="notes"></div>
+    <video id="theImage" autoplay muted loop playsinline></video>
   </body>
   <!-- <script src="zScan.min.js"></script> -->
   <script>
