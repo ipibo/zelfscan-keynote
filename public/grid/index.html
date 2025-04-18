@@ -50,7 +50,7 @@
   </style>
   <title>Video Fullscreen</title>
   <script>
-    // Register the Service Worker
+    // Register the Service Worwebker
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/service-worker.js').then(() => {
         console.log('Service Worker registered successfully.');
@@ -61,7 +61,8 @@
 
     const href = document.location.href;
     const gridPosition = href.split("/").filter(part => part).pop();
-    const videoUrl = `videos/${gridPosition}.webm`;
+    // const videoUrl = `videos/${gridPosition}.webm`;
+    const videoUrl = `videos/${gridPosition}.mp4`;
 
     // Cache the video for offline use
     fetch(videoUrl).then(response => {
