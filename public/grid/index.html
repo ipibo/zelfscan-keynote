@@ -99,8 +99,8 @@
     // Update the video source and enter fullscreen if it has been triggered manually
     socket.addEventListener("message", (event) => {
       const video = document.getElementById("theImage")
-      // const newSrc = `http://${baseURL}/videos/${gridPosition}.mp4`
-      const newSrc = `http://${baseURL}/videos/${gridPosition}.webm`
+      const newSrc = `http://${baseURL}/videos/${gridPosition}.mp4`
+      // const newSrc = `http://${baseURL}/videos/${gridPosition}.webm`
 
       video.src = newSrc
       video.play() // Ensure video plays automatically
