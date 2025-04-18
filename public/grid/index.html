@@ -4,7 +4,50 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="mobile-web-app-capable" content="yes" />
-  <link rel="stylesheet" href="styles.css" />
+  <!-- <link rel="stylesheet" href="styles.css" /> -->
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      /* Prevent scrollbars */
+    }
+
+    /* Ensure video fills the screen */
+    video#theImage {
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      /* Ensure the video covers the screen */
+      background: black;
+      border: none;
+      display: block;
+      top: 0;
+      left: 0;
+      margin: 0px;
+      padding: 0px;
+    }
+
+    /* Style for fullscreen button */
+    button {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 1000;
+      /* Ensure it stays above the video */
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
   <title>Video Fullscreen</title>
   <script>
     const href = document.location.href
