@@ -1,7 +1,7 @@
 const CACHE_NAME = 'video-cache';
 const CACHE_FILES = [];
 
-// Install event: Cache files
+// Install event: Cache static files
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
@@ -10,11 +10,23 @@ self.addEventListener('install', (event) => {
   );
 });
 
-// Fetch event: Serve cached files if available
+// Fetch event: Serve cached files if available, otherwise fetch from network
 self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request).then((response) => {
-      return response || fetch(event.request);
+      if (response) {
+        return response; // Serve from cache
+      }
+      return fetch(event.request).then((networkResponse) => {
+        // Clone the response before caching it
+        const responseClone = networkResponse.clone();
+        if (event.request.url.includes('videos/')) {
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(event.request, responseClone);
+          });
+        }
+        return networkResponse; // Serve the original response
+      });
     })
   );
 });
