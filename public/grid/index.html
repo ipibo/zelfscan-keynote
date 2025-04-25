@@ -1,130 +1,134 @@
 <html>
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="mobile-web-app-capable" content="yes" />
-  <!-- <link rel="stylesheet" href="styles.css" /> -->
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      /* Prevent scrollbars */
-    }
-
-    /* Ensure video fills the screen */
-    video#theImage {
-      width: 100vw;
-      height: 100vh;
-      object-fit: cover;
-      /* Ensure the video covers the screen */
-      background: black;
-      border: none;
-      display: block;
-      top: 0;
-      left: 0;
-      margin: 0px;
-      padding: 0px;
-    }
-
-    /* Style for fullscreen button */
-    button {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      padding: 10px 20px;
-      font-size: 16px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      z-index: 1000;
-      /* Ensure it stays above the video */
-    }
-
-    button:hover {
-      background-color: #0056b3;
-    }
-  </style>
-  <title>Video Fullscreen</title>
-  <script>
-    // Register the Service Worker
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/service-worker.js').then(() => {
-        console.log('Service Worker registered successfully.');
-      }).catch((error) => {
-        console.error('Service Worker registration failed:', error);
-      });
-    }
-
-    const href = document.location.href;
-    const gridPosition = href.split("/").filter(part => part).pop();
-    const videoUrl = `videos/${gridPosition}.mp4`;
-    // const videoUrl = `videos/${gridPosition}.webm`;
-
-    const wsProtocol = "ws://";
-    const wsHost = href.split("/")[2].split(":")[0]; // Extract the host part from the URL
-    const wsPort = "8080";
-    const wsUrl = `${wsProtocol}${wsHost}:${wsPort}`;
-    const baseURL = `${wsHost}:3000`;
-
-    let socket = new WebSocket(wsUrl);
-
-    let isFirstTimeFullscreen = false; // Track if fullscreen has been triggered manually
-
-    // Function to enter fullscreen mode
-    const makeFullscreen = () => {
-      const video = document.getElementById("theImage");
-      video.requestFullscreen({ navigationUI: "hide" });
-    };
-
-    // Event listener for WebSocket connection open
-    socket.addEventListener("open", () => {
-      console.log("Connected to WebSocket server.");
-    });
-
-    // Update the video source and enter fullscreen if it has been triggered manually
-    socket.addEventListener("message", (event) => {
-      const video = document.getElementById("theImage");
-      const newSrc = `http://${baseURL}/videos/${gridPosition}.mp4`;
-      // const newSrc = `http://${baseURL}/videos/${gridPosition}.webm`;
-
-      video.src = newSrc;
-      video.play(); // Ensure video plays automatically
-
-      // If fullscreen was triggered manually before, keep it in fullscreen mode
-      if (isFirstTimeFullscreen) {
-        makeFullscreen();
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <!-- <link rel="stylesheet" href="styles.css" /> -->
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        /* Prevent scrollbars */
       }
-    });
 
-    socket.addEventListener("close", function () {
-      console.log("WebSocket connection closed");
-      const reconnect = function () {
-        console.log("Attempting to reconnect to WebSocket server");
-        socket = new WebSocket(`${wsProtocol}${wsHost}:${wsPort}`);
-        socket.addEventListener("open", function () {
-          console.log("WebSocket connection reestablished");
-          location.reload();
-        });
-        socket.addEventListener("close", function () {
-          console.log("WebSocket connection closed again, retrying...");
-          setTimeout(reconnect, 5000);
-        });
-        socket.addEventListener("error", function (error) {
-          console.error("WebSocket error during reconnection:", error);
-        });
-      };
-      setTimeout(reconnect, 5000);
-    });
-  </script>
-  <style></style>
-</head>
+      /* Ensure video fills the screen */
+      video#theImage {
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        /* Ensure the video covers the screen */
+        background: black;
+        border: none;
+        display: block;
+        top: 0;
+        left: 0;
+        margin: 0px;
+        padding: 0px;
+      }
 
-<body>
-  <video id="theImage" controls autoplay muted loop playsinline></video>
-</body>
+      /* Style for fullscreen button */
+      button {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        z-index: 1000;
+        /* Ensure it stays above the video */
+      }
 
+      button:hover {
+        background-color: #0056b3;
+      }
+    </style>
+    <title>Video Fullscreen</title>
+    <script>
+      // Register the Service Worker
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("/service-worker.js")
+          .then(() => {
+            console.log("Service Worker registered successfully.")
+          })
+          .catch((error) => {
+            console.error("Service Worker registration failed:", error)
+          })
+      }
+
+      const href = document.location.href
+      const gridPosition = href
+        .split("/")
+        .filter((part) => part)
+        .pop()
+      const videoUrl = `videos/${gridPosition}.mp4`
+      // const videoUrl = `videos/${gridPosition}.webm`;
+
+      const wsProtocol = "ws://"
+      const wsHost = href.split("/")[2].split(":")[0] // Extract the host part from the URL
+      const wsPort = "8080"
+      const wsUrl = `${wsProtocol}${wsHost}:${wsPort}`
+      const baseURL = `${wsHost}:3000`
+
+      let socket = new WebSocket(wsUrl)
+
+      let isFirstTimeFullscreen = false // Track if fullscreen has been triggered manually
+
+      // Function to enter fullscreen mode
+      const makeFullscreen = () => {
+        const video = document.getElementById("theImage")
+        video.requestFullscreen({ navigationUI: "hide" })
+      }
+
+      // Event listener for WebSocket connection open
+      socket.addEventListener("open", () => {
+        console.log("Connected to WebSocket server.")
+      })
+
+      // Update the video source and enter fullscreen if it has been triggered manually
+      socket.addEventListener("message", (event) => {
+        const video = document.getElementById("theImage")
+        const newSrc = `http://${baseURL}/videos/${gridPosition}.mp4`
+        // const newSrc = `http://${baseURL}/videos/${gridPosition}.webm`;
+
+        video.src = newSrc
+        video.play() // Ensure video plays automatically
+
+        // If fullscreen was triggered manually before, keep it in fullscreen mode
+        if (isFirstTimeFullscreen) {
+          makeFullscreen()
+        }
+      })
+
+      socket.addEventListener("close", function () {
+        console.log("WebSocket connection closed")
+        const reconnect = function () {
+          console.log("Attempting to reconnect to WebSocket server")
+          socket = new WebSocket(`${wsProtocol}${wsHost}:${wsPort}`)
+          socket.addEventListener("open", function () {
+            console.log("WebSocket connection reestablished")
+            location.reload()
+          })
+          socket.addEventListener("close", function () {
+            console.log("WebSocket connection closed again, retrying...")
+            setTimeout(reconnect, 5000)
+          })
+          socket.addEventListener("error", function (error) {
+            console.error("WebSocket error during reconnection:", error)
+          })
+        }
+        setTimeout(reconnect, 5000)
+      })
+    </script>
+    <style></style>
+  </head>
+
+  <body>
+    <video id="theImage" autoplay muted loop playsinline></video>
+  </body>
 </html>
